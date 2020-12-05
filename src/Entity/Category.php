@@ -34,6 +34,12 @@ class Category
         $this->products = new ArrayCollection();
     }
 
+    #ici nous demandons a php de mettre au format string le name des categories pour le passer au select dans la creation d'un produit
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

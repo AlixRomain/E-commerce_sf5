@@ -1,0 +1,27 @@
+.product-subtitle, .product-price{
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.product-item h5{
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.product-item h5{
+
+    margin-bottom: 100px;
+}
+.product-price{
+    font-weight: bold;
+}
+.footer-custom{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    padding-top: 20px;
+    background: #4c555a;
+    color: white;
+    width: 100%;
+}

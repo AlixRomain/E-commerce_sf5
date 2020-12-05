@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail produit| Mon site E-commerce{% endblock %}
+
+{% block content %}
+    <h1>Nos produits</h1>
+    <div class="row">
+            <div class="col-md-5">
+                <div class="product-item text-center">
+                    <img class="img-fluid" src="/uploads/" alt="{{ product.name}}">
+                </div>
+            </div>
+        <div class="col-md-7 my-auto">
+            <h4>{{ product.name }}</h4>
+            <span class="product-subtitle row"> {{ product.subtitle }}</span>
+            <hr>
+            <span class="product-price"> {{ product.price/100|number_format(2, '.', '.')}} €</span>
+            <hr>
+            <p>{{ product.description }}</p>
+            <a href="" class="btn btn-primary">Ajouter au panier</a>
+        </div>
+    </div>
+{% endblock %}
