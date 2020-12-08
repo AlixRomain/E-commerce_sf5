@@ -57,6 +57,10 @@
             {% else %}
             <a href="{{ path('app_login') }}">Connexion  |</a>  <a href="{{ path('register') }}">Inscription</a>
             {% endif %}
+            <a href="{{ path('my-cart') }}" class="ml-3">
+                <img src="{{ asset('asset/img/shopping-cart.png') }}" height="25px" alt="Mon panier d'achat">
+            </a>
+
 
         </div>
     </nav>

@@ -52,16 +52,19 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * Requete qui récupère un produit en fonction de l'id passer en paramètre
+     * @return Product[]
+     */
 
-    /*
-    public function findOneBySomeField($value): ?Product
+    public function findOneById($id): ?Product
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.id = :val')
+            ->setParameter('val', $id)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }

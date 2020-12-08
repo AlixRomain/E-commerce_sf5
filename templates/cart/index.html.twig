@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier | site E-commerce!{% endblock %}
+
+{% block content %}
+    {% if(cart|length > 0) %}
+
+    <div class="example-wrapper">
+        <h1>Mon panier </h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Produit</th>
+                <th scope="col">Désignation</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">P.unit</th>
+                <th scope="col">Total</th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+         {% set Total = null%}
+            {% for product in cart %}
+
+            <tr>
+                <th>
+                   {#<img src="{{ product.product.image }}" alt="{{ product.product.name }} height="75px">#}
+                </th>
+
+                <td>{{ product.product.name }}
+                    </br>
+                    <small>{{product.product.subtitle}}</small>
+                </td>
+                <td>
+                    <a href="{{ path('min-to-cart',{id : product.product.id}) }}">-</a>
+                    {{ product.quantity }}
+                    <a href="{{ path('add-to-cart',{id : product.product.id}) }}">+</a>
+                </td>
+
+                <td>{{ (product.product.price /100)|number_format(2)  }} €</td>
+                <td>{{ (product.product.price * product.quantity /100)|number_format(2)}} €</td>
+                <td>
+                    <a href="{{ path('delete-one-product',{id : product.product.id}) }}">
+                        <img src="{{ asset('asset/img/delete.png') }}" height="25px" alt="Supprimer ce produit">
+                    </a>
+                </td>
+            </tr>
+                {% set Total = Total + (product.product.price * product.quantity)%}
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+        <div class="text-right mb-5">
+
+            <b>Nombre de produits : {{ cart|length }}</b><br>
+            <b>Total de mon panier : {{ (Total /100)|number_format(2)}} € </b><br>
+            <a href="" class="btn btn-success btn-primary mt-3">Valider mon panier </a>
+        </div>
+
+    </div>
+    {% else %}
+        <hr>
+        <b>Votre panier est vide </b>
+    {% endif %}
+{% endblock %}
