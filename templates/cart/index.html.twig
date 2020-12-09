@@ -57,7 +57,7 @@
 
             <b>Nombre de produits : {{ cart|length }}</b><br>
             <b>Total de mon panier : {{ (Total /100)|number_format(2)}} € </b><br>
-            <a href="" class="btn btn-success btn-primary mt-3">Valider mon panier </a>
+            <a href="{{ path('order') }}" class="btn btn-success btn-primary mt-3">Valider mon panier </a>
         </div>
 
     </div>

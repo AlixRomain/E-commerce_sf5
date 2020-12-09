@@ -141,4 +141,8 @@ class Address
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getName().'[br]'.$this->getCity().'[br]'.$this->getAdress();
+    }
 }
