@@ -4,4 +4,6 @@
 
 {% block content %}
     <h1>Bienvenue sur votre compte {{ app.user.firstname }}.</h1>
+
+    <a href="{{ path('account_adress') }}"> Gestion des adresses adresse</a>
 {% endblock %}
