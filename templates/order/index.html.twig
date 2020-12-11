@@ -15,7 +15,11 @@
        <div class="col-md-6">
             {#Ici je créer une variable qui contient le form pour pouvoir lui appliquer des filtres |replace et |raw#}
            {% set MonForm %}
-                {{ form(form) }}
+               {#ici je decoupe le form pour réattribuer la méthode action et rerouter vers une autre URL avec les infos#}
+               {{ form_start(form, {action:path('order_recap')}) }}
+               {{ form_label(form.addresses,'Choisissez votre adresse de livraison') }}
+               <a href="{{ path('account_adress-add') }}">Ajouter une nouvelle adresse</a>
+                {{ form_end(form) }}
            {% endset %}
            {#ici Monform appelle le form/ Replace remplace les[br] raw permet d'échapper le formulaire et lui rendre un aspect HTML#}
            {{ MonForm|replace({'[br]' : '</br>'})|raw}}
