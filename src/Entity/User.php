@@ -135,6 +135,14 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
+    public function getFullName(): ?string
+    {
+        return $this->getFirstname().' '.$this->getLastname();
+    }
+
+    /**
+     * @see UserInterface
+     */
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here

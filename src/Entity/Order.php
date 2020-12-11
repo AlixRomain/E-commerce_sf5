@@ -126,6 +126,17 @@ class Order
         return $this;
     }
 
+    //Ce guetteur fait main donne le Total HT/HL de la commande en additionnant les montants de chaque produits associé
+    // dans la table Order Détails; Elle le renvoit entre autre côté admin 'orderCrudController'
+    public function getTotal(): ?float
+    {
+        $total = null;
+        foreach ($this->getOrderDetails()->getValues() as $product){
+            $total =$total + ($product->getPrice() * $product->getQuantity());
+        }
+        return $total;
+    }
+
     /**
      * @return Collection|OrderDetails[]
      */
