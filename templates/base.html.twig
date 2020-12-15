@@ -11,6 +11,7 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/css/products.css') }}" rel="stylesheet">
+    {% block javaScript %}    {% endblock %}
 
 
     <style>
@@ -136,5 +137,8 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ asset('asset/js/bootstrap.bundle.js') }}"></script>
+
 </body>
+{% block Script %} {% endblock %}
+
 </html>

@@ -27,6 +27,7 @@ class OrderController extends AbstractController
     {
         //Ici via la methodes getValues() je regarde si la relation adress/User à bien une adresse enregistré.
         if(!$this->getUser()->getAddresses()->getValues()){
+            //sinon je le reroute pour qu'il en crée une
             return $this->redirectToRoute('account_adress-add');
         }
         //ici je passe en troisieme param les datas de l'utilisateurs en cours pour que dans le formulaire il ne m'affiche que
@@ -70,6 +71,7 @@ class OrderController extends AbstractController
 
             //Hydratation de l'objet Order
             $order = new Order();
+            $order->setReference($date->format('dmY').'-'.uniqid());
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
             $order->setCarrierName($carriers->getName());
@@ -79,27 +81,33 @@ class OrderController extends AbstractController
 
             $this->entityManager->persist($order);
 
+
             //Hydratation de l'objet OrderDetail
-            foreach ($cart->getFull($cart) as $product){
+
+            foreach ($cart->getFull($cart) as $product) {
                 $orderD = new OrderDetails();
-                $orderD->setMyOrder( $order);
+                $orderD->setMyOrder($order);
                 $orderD->setProduct($product['product']->getName());
                 $orderD->setQuantity($product['quantity']);
                 $orderD->setPrice($product['product']->getPrice());
-                $orderD->setTotal( $product['quantity'] * $product['product']->getPrice());
+                $orderD->setTotal($product['quantity'] * $product['product']->getPrice());
                 $this->entityManager->persist($orderD);
-            }
-            $this->entityManager->flush();
 
-            // Nous retournons la vue que si le formulaire à été soumis dans l'url /commande.
+                $this->entityManager->flush();
+
+            }//End Foreach
+
+
+            // Nous retournons la vue que si le formulaire à été soumis dans l'url /commande. Render est dans le 'If valid et submit'
             return $this->render('order/recap.html.twig', [
                 'cart' => $cart->getFull($cart),
                 'carrier'=> $carriers,
                 'address' =>  $delivery,
+                'reference'=> $order->getReference()
             ]);
-        }
+        }//End If(is submitt && is valid)
 
-        //ici on redirige vers  si l'utilisateur est arrivé ici via l'url et non la soumission du formulaire dans l'url /commande
+        //ici on redirige vers mon panier si l'utilisateur est arrivé ici via l'url et non la soumission du formulaire dans l'url /commande
         return $this->redirectToRoute('my-cart');
 
     }
