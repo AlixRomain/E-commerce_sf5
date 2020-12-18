@@ -60,8 +60,8 @@ class OrderController extends AbstractController
             $carriers= $form->get("carriers")->getData();
             $delivery= $form->get("addresses")->getData();
 
-            $delivery_content = $delivery->getName().''.$delivery->getLastName();
-            $delivery_content .= $delivery->getPhone();
+            $delivery_content = $delivery->getName().'<br>'.$delivery->getLastName();
+            $delivery_content .= '<br>'.$delivery->getPhone();
            // if($delivery->getCompany()){
               //  $delivery_content .= $delivery->getCompany();
               //  $delivery_content .= $delivery->getCountry();

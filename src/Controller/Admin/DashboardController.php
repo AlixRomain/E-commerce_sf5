@@ -35,6 +35,7 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Mon site E-commerce');
     }
 
+
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');

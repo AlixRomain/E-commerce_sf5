@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des commandes | Mon site E-commerce{% endblock %}
+
+{% block content %}
+    <h1>Gestion de vos commandes.</h1>
+    <a href="{{ path('account') }}"> Retourner sur mon compte</a>
+    <hr class="mb-4">
+    {% if orders|length == 0 %}
+        Vous n'avez pa encore passer de commande sur le site E-commerce.
+        <a href="{{ path('account_adress-add') }}" class="btn btn-info btn-sm"> Ajouter une adresse</a>
+    {% else %}
+        <div class="row">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Passée le</th>
+                        <th scope="col">Réference</th>
+                        <th scope="col">Produit(s)</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.createdAt|date('d/m/Y') }}</td>
+                        <td><span class="badge badge-secondary">{{ order.reference }}</span></td>
+                        <td>{{ order.orderDetails|length }}</td>
+                        <td>{{ (order.carrierPrice + order.getTotal)/100|format(2,',','.') }} €</td>
+                        <td class="text-right"><a href="{{path('account_order_show', {'reference': order.reference}) }}">Voir plus</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+    {% endif %}
+
+
+
+{% endblock %}

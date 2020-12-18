@@ -64,10 +64,14 @@ class StripeController extends AbstractController
             'payment_method_types' => ['card'],
             'line_items' => [$product_for_stripe],
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN . '/success.html',
-            'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
+            'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
         ]);
+        //Enregegistrement en Table ORDER de la session ID de Stripe
+        $order->setStripeSessionId($checkout_session->id);
+        $entityManager->flush();
 
+        //Retour de l'id de la session encodé en Json à la fonction JS
         $response = new JsonResponse(['id'=> $checkout_session->id]);
         return $response;
 
