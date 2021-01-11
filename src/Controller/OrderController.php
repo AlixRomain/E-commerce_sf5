@@ -30,7 +30,7 @@ class OrderController extends AbstractController
             //sinon je le reroute pour qu'il en crée une
             return $this->redirectToRoute('account_adress-add');
         }
-        //ici je passe en troisieme param les datas de l'utilisateurs en cours pour que dans le formulaire il ne m'affiche que
+        //ici je passe en 3eme param les datas de l'utilisateurs en cours pour que dans le formulaire il ne m'affiche que
         //les adresse liées à cet utilisateur
         $form = $this->createForm(OrderType::class, null, [
             'user' => $this->getUser(),
@@ -77,7 +77,7 @@ class OrderController extends AbstractController
             $order->setCarrierName($carriers->getName());
             $order->setCarrierPrice($carriers->getPrice());
             $order->setDelivery($delivery_content);
-            $order->setIsPaid(0);
+            $order->setState(0);
 
             $this->entityManager->persist($order);
 

@@ -5,5 +5,8 @@
 {% block content %}
     {#     ici on utilise form de twig pour appeler la var form du controler
 #}
+    {% if notification %}
+        <div class="alert alert-info">{{ notification }}</div>
+    {% endif %}
 {{ form(form) }}
 {% endblock %}
