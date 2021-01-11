@@ -51,6 +51,7 @@ class ProductController extends AbstractController
     {
 
         $product  = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
+        $Best_products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
         #SI je ne trouve pas de produit je redirige vers la pages des produits
         if(!$product){
           return  $this->redirectToRoute('products');
@@ -58,6 +59,7 @@ class ProductController extends AbstractController
 
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'products' => $Best_products,
         ]);
     }
 }

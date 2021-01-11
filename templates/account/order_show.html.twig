@@ -46,4 +46,7 @@
         <strong>Livraison : </strong>{{ (order.carrierPrice/100)|format(2,',','.') }} € <br>
         <strong>Total : </strong>  {{ ((order.getTotal/100) + order.carrierPrice/100)|format(2,',','.') }} €<br>
     </div>
+
+
+
 {% endblock %}

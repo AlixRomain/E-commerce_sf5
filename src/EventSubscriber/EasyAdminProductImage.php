@@ -9,7 +9,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 Class EasyAdminProductImage implements EventSubscriberInterface {
-
+//////////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////////
+/// //////////////FICHIER INUTILE EST CADUC APRES MISE A JOUR EASY BUNDLE///////////
+/// MAIS TRES UTILE POUR S'INSTRUIRE SUR SYMFONY///////////////////////////////////
+/// NOTAMENT POUR PLACER DES ACTIONS AVANT UN EVENEMENT PARTICULIER COMME PERSIST
     private $appKernel;
 
     public function __construct(KernelInterface $appKernel)
@@ -68,13 +72,13 @@ Class EasyAdminProductImage implements EventSubscriberInterface {
             return;
         }
         #Si on est avant un update et que le champ image est rempli tu me joue le code
-        if($_FILES(['product']['name']['image']) != ''){
+       // if($_FILES(['product']['name']['image']) != ''){
 
-            $entity = $event->getEntityInstance();
+          //  $entity = $event->getEntityInstance();
 
-            $name_file = $_FILES(['product']['name']['image']);
+          //  $name_file = $_FILES(['product']['name']['image']);
 
-            $uniqId = uniqid();
+          //  $uniqId = uniqid();
 
             #$extension = pathinfo($_FILES(['product']['name']['image']), PATHINFO_EXTENSION);
 
@@ -83,6 +87,6 @@ Class EasyAdminProductImage implements EventSubscriberInterface {
             #  move_uploaded_file($entity,$project_dir.'/public/uploads'.$uniqId.'.'.$extension );
 
             #  $entity->setImage($uniqId.'.'.$extension);
-        }
+      //  }
     }
 }

@@ -7,7 +7,7 @@
     <div class="row">
             <div class="col-md-5">
                 <div class="product-item text-center">
-                    <img class="img-fluid" src="/uploads/" alt="{{ product.name}}">
+                    <img class="img-fluid" src="/uploads/{{ product.image}}" alt="{{ product.name}}">
                 </div>
             </div>
         <div class="col-md-7 my-auto">
@@ -19,5 +19,13 @@
             <p>{{ product.description }}</p>
             <a href="{{ path('add-to-cart',{'id':product.id })}}" class="btn btn-primary">Ajouter au panier</a>
         </div>
+    </div>
+    <hr>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-3">
+                {% include 'product/single_product.html.twig' %}
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
