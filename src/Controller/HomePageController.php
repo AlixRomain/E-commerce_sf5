@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Mail;
+use App\Entity\Header;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,8 +24,10 @@ class HomePageController extends AbstractController
     public function index(): Response
     {
         $product = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
+        $headers = $this->entityManager->getRepository(Header::class)->findAll();
         return $this->render('home_page/index.html.twig', [
             'products'=>$product,
+            'headers'=>$headers,
         ]);
     }
 
